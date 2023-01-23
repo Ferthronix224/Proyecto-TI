@@ -1,0 +1,112 @@
+<mat-card>
+  <h1>Nuevo Alumno</h1>
+</mat-card>
+<br>
+<mat-card>
+  <mat-spinner *ngIf = "isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSavePost()" *ngIf = "!isLoading">
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Nombre">
+      <mat-error *ngIf="form.get('name').invalid">Por favor ingrese el nombre</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      formControlName="lastName"
+      placeholder="Apellido:">
+      <mat-error *ngIf="form.get('lastName').invalid">Por favor ingrese el apellido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="date"
+      formControlName="dateBirth"
+      placeholder="Fecha de nacimiento">
+      <mat-error *ngIf="form.get('dateBirth').invalid">Por favor ingrese la fecha de nacimiento</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      formControlName="address"
+      placeholder="Dirección">
+      <mat-error *ngIf="form.get('address').invalid">Por favor ingrese la dirección</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      formControlName="number"
+      placeholder="Número Telefonico">
+      <mat-error *ngIf="form.get('number').invalid">Por favor ingrese el número telefonico</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <p>Generación</p>
+      <select matNativeControl required formControlName="generation">
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      formControlName="average"
+      placeholder="Promedio">
+      <mat-error *ngIf="form.get('average').invalid">Por favor ingrese el promedio</mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <p>Discapacidades</p>
+      <select matNativeControl required formControlName="disability" [(ngModel)]="disability">
+        <option value="Si">Si</option>
+        <option value="No">No</option>
+      </select>
+      <br><br>
+      <p *ngIf="disability == 'Si'">Escriba las discapacidades</p>
+    <input
+    *ngIf="disability == 'Si'"
+      matInput
+      type="text"
+      formControlName="disability"
+      placeholder="Discapacidades">
+    </mat-form-field>
+    <mat-form-field >
+      <p>Reportes</p>
+      <select matNativeControl required formControlName="reports" [(ngModel)]="reports">
+        <option value="Si">Si</option>
+        <option value="No">No</option>
+      </select>
+      <br><br>
+      <p *ngIf="reports == 'Si'">Escriba los reportes</p>
+    <input
+    id="reportes"
+    *ngIf="reports == 'Si'"
+    matInput
+    type="text"
+    formControlName="reports"
+    placeholder="Reportes">
+    </mat-form-field>
+    <div>
+      <p>Alumno</p>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Selecciona Imagen</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.name">
+    </div>
+    <button
+    id="save"
+    mat-raised-button
+    color="warn"
+    type="submit">Guardar Alumno</button>
+  </form>
+</mat-card>

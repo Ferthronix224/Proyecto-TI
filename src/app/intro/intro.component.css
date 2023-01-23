@@ -1,0 +1,75 @@
+#introduction{
+  margin: 0;
+  width: auto;
+}
+#div{
+  height: auto;
+  width: 50rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: black;
+  opacity: 0.8;
+  margin: auto;
+  text-align: center;
+}
+
+.h1{
+  margin-top: 1rem;
+  color: white;
+  opacity: 1.0;
+}
+
+#cards{
+  margin: 1rem 8rem;
+  text-align: center;
+}
+
+img{
+  margin: auto;
+}
+
+#alumnos{
+  width: 72rem;
+}
+
+.flex{
+  display: inline-flex;
+}
+
+.block{
+  display: block;
+}
+
+#fuerza{
+  margin-left: 10rem;
+}
+
+#inteligencia{
+  margin-left: 10rem;
+}
+
+#originalidad{
+  margin-left: 10rem;
+}
+
+
+.fila{
+  display: flex;
+  margin-top: 5rem;
+}
+
+.contenedor{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.centrado{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 1rem;
+  color: white;
+  opacity: 1.0;
+}

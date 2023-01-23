@@ -1,0 +1,66 @@
+<mat-card id="h1">
+  <h1 *ngIf="link == '/list'">Todos los alumnos</h1>
+  <h1 *ngIf="link == '/2017'">Generación 2017</h1>
+  <h1 *ngIf="link == '/2018'">Generación 2018</h1>
+  <h1 *ngIf="link == '/2019'">Generación 2019</h1>
+  <h1 *ngIf="link == '/2020'">Generación 2020</h1>
+  <h1 *ngIf="link == '/2021'">Generación 2021</h1>
+  <h1 *ngIf="link == '/2022'">Generación 2022</h1>
+</mat-card>
+<br>
+<div id="buscador" *ngIf="link == '/list'">
+  <h3>Buscador: </h3>
+  <input [(ngModel)]="search" type="text" style="height: 1rem; margin-left:1rem;" >
+</div>
+<br>
+<mat-card id="list">
+  <br><mat-spinner style="margin:auto;" *ngIf="isLoading"></mat-spinner>
+  <mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
+    <mat-expansion-panel *ngFor="let post of posts">
+      <mat-expansion-panel-header *ngIf="search == post.name || search == post.lastName || search == post.dateBirth || search == post.address || search == post.number || search == post.generation || search == post.average || search == post.disability || search == post.reports" >
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="search == '' && link == '/list'">
+      <!--<mat-expansion-panel-header *ngIf="link == '/list'">-->
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2017' && post.generation == '2017'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2018' && post.generation == '2018'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2019' && post.generation == '2019'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2020' && post.generation == '2020'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2021' && post.generation == '2021'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header *ngIf="link == '/2022' && post.generation == '2022'">
+        {{post.lastName}} {{post.name}}
+      </mat-expansion-panel-header>
+      <div class="post-image">
+        <img [src]="post.imagePath" alt="post.name">
+      </div>
+        <p>Fecha de nacimiento: {{post.dateBirth}}</p>
+        <p>Dirección: {{post.address}}</p>
+        <p>Número: {{post.number}}</p>
+        <p>Generación: {{post.generation}}</p>
+        <p>Promedio: {{post.average}}</p>
+        <p>Discapacidades: {{post.disability}}</p>
+        <p>Reportes: {{post.reports}}</p>
+        <mat-action-row>
+          <a mat-button color="primary" [routerLink]="['/edit', post.id]">Editar</a>
+          <button type="button" (click)="deleteDocument(post.id)" mat-button color="warn">Eliminar</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">
+  <br>
+  No hay publicaciones agregadas
+  </p>
+
+</mat-card>
